@@ -1,8 +1,8 @@
 class Post < ActiveRecord::Base
   validates :title, presence: true
-  validates :category, presence: true, if :correct_cat?(:category)
+  validates :category, inclusion: { in: %w(Fiction Non-Fiction)}
 
-  def correct_cat?(cat)
+  def correct_cat?
     if cat === "Non-Fiction" || cat === "Fiction"
       true
     else
